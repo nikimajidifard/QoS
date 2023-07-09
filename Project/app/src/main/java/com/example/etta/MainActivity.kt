@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         binding.listview.onItemClickListener = OnItemClickListener { adapterView, view, i, l ->
             val intent = Intent(this@MainActivity, DetailedActivity::class.java)
             intent.putExtra("name", nameList[i])
+            Log.v("fatimeName","MainActivity: " + nameList[1])
             intent.putExtra("ingredients", ingredientList[i])
             intent.putExtra("desc", descList[i])
             intent.putExtra("image", imageList[i])
@@ -130,6 +131,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this@MainActivity, DetailedActivity::class.java)
         intent.putExtra("name", pingData.time)
+        Log.v("fatimeName","MainActivity: " + pingData.time)
         intent.putExtra("ingredients", pingData.description)
         intent.putExtra("desc", pingData.value)
         intent.putExtra("image", listData.image)

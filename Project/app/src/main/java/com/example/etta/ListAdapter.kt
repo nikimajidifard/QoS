@@ -42,15 +42,23 @@ class ListAdapter(
 
             val intent = Intent(context, DetailedActivity::class.java)
             intent.putExtra("name", pingData.time)
+            Log.v("fatimeName","MainActivity hello: " + pingData.time)
+
             intent.putExtra("ingredients", pingData.description)
             intent.putExtra("desc", pingData.value)
             intent.putExtra("image", listData.image)
+
 //
 //            Log.d("ListAdapter", "pingData description: ${listData.image}")
 //            Log.d("ListAdapter", "pingData description: ${pingData.description}")
 //            Log.d("ListAdapter", "pingData description: ${pingData.time}")
 //            Log.d("ListAdapter", "pingData description: ${pingData.value}")
 //            Log.d("ListAdapter", "Starting DetailedActivity with Intent: $intent")
+
+//            val intent = Intent(this, MainActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
+//            startActivity(intent)
+//            finish()
 
             context.startActivity(intent)
 
