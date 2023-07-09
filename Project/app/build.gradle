@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.project'
+    namespace 'com.example.etta'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.project"
+        applicationId "com.example.etta"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -16,7 +16,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
 
     buildTypes {
         release {
@@ -31,28 +30,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
+
 dependencies {
+
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:VERSION'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
-    implementation "io.ktor:ktor-client-core:1.6.4"
-    implementation "io.ktor:ktor-client-okhttp:1.6.4"
     testImplementation 'junit:junit:4.13.2'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 }
