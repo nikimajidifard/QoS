@@ -143,7 +143,13 @@ upload rate: (eitas webapi for uploading a file accurs problem)
     }
  ```
 calculate Qos-Qoe 
- ``` 
+ ```
+//Qos weights 
+    val weightPing = 0.4
+    val weightUploadRate = 0.2
+    val weightDownloadRate = 0.2
+    val weightPacketLoss = 0.6
+//calculate parameters scores(between 0-1 )
  fun calculateOverallQoSScore(
         ping: Double,
         uploadRate: Double,
