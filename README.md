@@ -1,5 +1,7 @@
 # QoS
-This program measures qos of eitaa app base on 4 main parameters latency, packet loss, download and upload rate
+## soheil Project
+### Group Members : Niki Majidifar, Fatima Mirjalili , Banafsheh Gholinezhad.
+    This program measures qos of eitaa app base on 4 main parameters latency, packet loss, download and upload rate
 ## qos_فارسی
   به مجموعه ای از پارامتر هایی اشاره دارد که که در شبکه های کامپیوتری برای کنترل کیفیت خدمات استفاده می شودqos 
   هدف اصلی در واقع ارائه خدمات بهتر برای برنامه ها و سرویس شبکه است
@@ -13,7 +15,8 @@ This program measures qos of eitaa app base on 4 main parameters latency, packet
   برای دانلود یک فایل از ایتا زده شده و سپس با تایمر مدت زمانیکه طول می کشد این فایل دانلود شود، اندازه گیری شده
   سپس حجم فایل مورد نظر بر مدت زمان تقسیم شده که درواقع همان نرخ دانلود می باشد
   پارامتر بعدی نیز که محاسبه شده نرخ اپلود است. برای نرخ اپلود نیز با اپلود فایل و اندازه گیری فایل اپلود شده تقسیم بر زمان اپلود نرخ اپلود را به دست می اوریم. نتیحه به دست اوردن مقادیر پارامتر ها در فولدر result_log  ذخیزه شده است. 
-  در نهایت با کمک مقادیر به دست امده ، مقدار qos  را حساب مبکنبم و برای هر پارامتر یک وزن در نظر میگیریم. در نهایت با توجه به مقدار این وزن ، مقدار Qoe  را در 5 دسته تقسیم کرده و نمایش می دهیم. 
+  در نهایت با کمک مقادیر به دست امده ، مقدار qos  را حساب مبکنبم و برای هر پارامتر یک وزن در نظر میگیریم. در نهایت با توجه به مقدار این وزن ، مقدار Qoe  را در 5 دسته تقسیم کرده و نمایش می دهیم.  
+  
   
   ping function calculator : 
   ```
@@ -111,7 +114,7 @@ suspend fun getFileSize(url: String): Long = withContext(Dispatchers.IO) {
         }
     }
  ```
-upload rate: (eitas webapi for uploading a file accurs problem) 
+upload rate: (eitas webapi for uploading a file accurs problem.  it doesnt work correctly) 
  ```
  fun calculateUploadRate(apiEndpoint: String, fileBytes: ByteArray) {
         val client = OkHttpClient()
