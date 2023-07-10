@@ -1,8 +1,13 @@
-package com.example.project
+package com.example.etta
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -19,11 +24,8 @@ import java.io.IOException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 
+class FirstActivity : AppCompatActivity() {
 
-
-
-
-class MainActivity : AppCompatActivity() {
     val weightPing = 0.4
     val weightUploadRate = 0.2
     val weightDownloadRate = 0.2
@@ -35,8 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_first)
         // Coroutine scope for ping calculation
         val pingCoroutineScope = CoroutineScope(Dispatchers.Default)
         val pingTimeDeferred = pingCoroutineScope.async { pingcalc().toDouble() }
@@ -44,25 +45,49 @@ class MainActivity : AppCompatActivity() {
         // Coroutine scope for download rate calculation
         val downloadCoroutineScope = CoroutineScope(Dispatchers.Default)
         val downloadRateDeferred = downloadCoroutineScope.async { downloadtest() }
+        val qoeTextView = findViewById<TextView>(R.id.textviewQoe)
+        val qosTextView = findViewById<TextView>(R.id.textviewQos)
 
-        runBlocking {
-            // Wait for the ping time value
-            val pingTime = pingTimeDeferred.await()
-            println("Ping: $pingTime ms")
-            // Add any further actions here after using the ping time value
-            println("Timer finished.")
-            // Wait for the download rate value
-            val downloadRate = downloadRateDeferred.await()
+        val newThread = Thread {
+            try {
+                runBlocking {
+                    // Wait for the ping time value
+                    val pingTime = pingTimeDeferred.await()
+                    println("Ping: $pingTime ms")
+                    // Add any further actions here after using the ping time value
+                    println("Timer finished.")
+                    // Wait for the download rate value
+                    val downloadRate = downloadRateDeferred.await()
 
-            // Use the pingTime and downloadRate values as needed
-            val packetLoss = packetloss()
-            val qos = calculateOverallQoSScore(pingTime/100, downloadRate/10, downloadRate, packetLoss)
-            val qoe = calculateOverallQoEScore(pingTime/100, downloadRate/10, downloadRate, packetLoss)
-            Log.d("Qoe_value" , " qoe : $qoe")
-            Log.d("Qos_value " , " qos : $qos")
+                    // Use the pingTime and downloadRate values as needed
+                    val packetLoss = packetloss()
+                    val qos = calculateOverallQoSScore(pingTime/100, downloadRate/10, downloadRate, packetLoss)
+                    val qoe = calculateOverallQoEScore(pingTime/100, downloadRate/10, downloadRate, packetLoss)
+                    Log.d("Qoe_value" , " qoe : $qoe")
+                    Log.d("Qos_value " , " qos : $qos")
+                    qoeTextView.text = qoe
+                    qosTextView.text = qos.toString()
+                    runOnUiThread {
+                        qoeTextView.text = qoe
+                        qosTextView.text = qos.toString()
+                    }
+
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
+
+        newThread.start()
+        val viewButton = findViewById<Button>(R.id.viewParameters)
+        viewButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
-//pig with system call , never used
+
+    //pig with system call , never used
     fun pingg(domain: String): Long {
         val runtime = Runtime.getRuntime()
         var timeofping: Long = 0
@@ -229,14 +254,14 @@ class MainActivity : AppCompatActivity() {
         var overallScore = 0.0
         val pingScore = calculatePingScore(ping)
         val uploadRateScore = calculateUploadRateScore(uploadRate)
-       val downloadRateScore = calculateDownloadRateScore(downloadRate)
+        val downloadRateScore = calculateDownloadRateScore(downloadRate)
         val packetLossScore = calculatePacketLossScore(packetLoss)
 
         // Calculate the weighted average of scores
         overallScore = (pingScore * weightPing + uploadRateScore * weightUploadRate + downloadRateScore * weightDownloadRate + packetLossScore * weightPacketLoss)
 
         return overallScore
-   }
+    }
     fun calculateOverallQoEScore(
         ping: Double,
         uploadRate: Double,
@@ -285,6 +310,4 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
-
 }
