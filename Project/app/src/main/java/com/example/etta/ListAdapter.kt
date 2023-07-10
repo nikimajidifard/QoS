@@ -40,13 +40,13 @@ class ListAdapter(
         btn_click_me.setOnClickListener {
             val pingData = pingg("web.eitaa.com")
 
-            val intent = Intent(context, DetailedActivity::class.java)
-            intent.putExtra("name", pingData.time)
-            Log.v("fatimeName","MainActivity hello: " + pingData.time)
+                val intent2 = Intent(context, DetailedActivity::class.java)
+                intent2.putExtra("name", pingData.time)
+                Log.v("fatimeName", "MainActivity hello: " + pingData.time)
 
-            intent.putExtra("ingredients", pingData.description)
-            intent.putExtra("desc", pingData.value)
-            intent.putExtra("image", listData.image)
+                intent2.putExtra("ingredients", pingData.description)
+                intent2.putExtra("desc", pingData.value)
+                intent2.putExtra("image", listData.image)
 
 //
 //            Log.d("ListAdapter", "pingData description: ${listData.image}")
@@ -60,8 +60,7 @@ class ListAdapter(
 //            startActivity(intent)
 //            finish()
 
-            context.startActivity(intent)
-
+                context.startActivity(intent2)
 
         }
 

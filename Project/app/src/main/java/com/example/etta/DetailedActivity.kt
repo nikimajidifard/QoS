@@ -28,13 +28,13 @@ class DetailedActivity : AppCompatActivity() {
 //        startActivity(intent)
 //        finish()
 
-        val intentData = getIntent()
+        val intentData = intent
 //        val intentData = intent
         if (intentData != null) {
-            val name = intentData.getStringExtra("name")
+            val name = intentData.getLongExtra("name",0)
 
 //            Log.v("fatimeName",name+"")
-            Log.v("fatimeName",name+" :*")
+            Log.v("fatimeName",name.toString()+" :*")
             val ingredients = intentData.getStringExtra("ingredients")
             val desc = intentData.getStringExtra("desc")
             val image = intentData.getIntExtra("image", R.drawable.mag)
@@ -46,7 +46,7 @@ class DetailedActivity : AppCompatActivity() {
             Log.d("ListAdapter", "Starting DetailedActivity with Intent: $intent")
 
 
-            binding.detailName.text = name
+            binding.detailName.text = name.toString()
             binding.detailIngredients.text = ingredients
             binding.detailDesc.text = desc
             binding.detailImage.setImageResource(image)
