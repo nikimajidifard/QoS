@@ -1,11 +1,10 @@
-# QoS
-## soheil Project
-### Group Members : Niki Majidifar, Fatima Mirjalili , Banafsheh Gholinezhad.
-    This program measures qos of eitaa app base on 4 main parameters latency, packet loss, download and upload rate
+# measuremnt of a QoS of a chat app
+Group Members : Niki Majidifar, Fatima Mirjalili , Banafsheh Gholinezhad.
+This program measures qos of eitaa app base on 4 main parameters latency, packet loss, download and upload rate
 
 ```
 
- ## project_ description
+#project_ description
 This program calculates the Quality of Experience (QoE) parameters for a specific application(Eitta). These parameters include ping test, download rate, upload rate, latency, and packet loss. Each parameter is represented as an item on the app's main page. When a user interacts with the corresponding button, the app sends a request to the Eitta API to calculate the related parameter. Once the calculation is completed, the app displays the calculated value and assesses the quality state, which can range from "bad" to "excellent." Additionally, the app assigns an order from 1 to 5 to provide a comprehensive explanation of the measured parameter's quality.
 
 To achieve this functionality, the app consists of three main files: MainActivity.kt, list_item.xml, and activity_main.xml. 
