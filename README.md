@@ -1,4 +1,4 @@
-# measuremnt of a QoS of a chat app
+# QoS measuremnt of a chat app
 Group Members : Niki Majidifar, Fatima Mirjalili , Banafsheh Gholinezhad.
 This program measures qos of eitaa app base on 4 main parameters latency, packet loss, download and upload rate
 
